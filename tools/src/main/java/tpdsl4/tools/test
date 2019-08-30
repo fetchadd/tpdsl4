@@ -1,0 +1,1 @@
+(prog (stat y = (expr (multExpr (primary 3)) + (multExpr (primary 4)))) (stat print (expr (multExpr (primary x) * (primary [ (expr (multExpr (primary 2))) , (expr (multExpr (primary 3))) , (expr (multExpr (primary 4))) ])))))

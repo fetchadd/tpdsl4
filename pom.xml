@@ -6,6 +6,7 @@
 
     <modules>
         <module>walking.tree-pattern</module>
+        <module>tools</module>
     </modules>
 
     <groupId>tpdsl4</groupId>
