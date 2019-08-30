@@ -100,6 +100,14 @@ public class VecMathParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_prog; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof VecMathListener ) ((VecMathListener)listener).enterProg(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof VecMathListener ) ((VecMathListener)listener).exitProg(this);
+		}
 	}
 
 	public final ProgContext prog() throws RecognitionException {
@@ -145,6 +153,14 @@ public class VecMathParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_stat; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof VecMathListener ) ((VecMathListener)listener).enterStat(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof VecMathListener ) ((VecMathListener)listener).exitStat(this);
+		}
 	}
 
 	public final StatContext stat() throws RecognitionException {
@@ -200,6 +216,14 @@ public class VecMathParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_expr; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof VecMathListener ) ((VecMathListener)listener).enterExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof VecMathListener ) ((VecMathListener)listener).exitExpr(this);
+		}
 	}
 
 	public final ExprContext expr() throws RecognitionException {
@@ -251,6 +275,14 @@ public class VecMathParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_multExpr; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof VecMathListener ) ((VecMathListener)listener).enterMultExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof VecMathListener ) ((VecMathListener)listener).exitMultExpr(this);
+		}
 	}
 
 	public final MultExprContext multExpr() throws RecognitionException {
@@ -312,6 +344,14 @@ public class VecMathParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_primary; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof VecMathListener ) ((VecMathListener)listener).enterPrimary(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof VecMathListener ) ((VecMathListener)listener).exitPrimary(this);
+		}
 	}
 
 	public final PrimaryContext primary() throws RecognitionException {

@@ -1,0 +1,13 @@
+[package]
+name = "ltd"
+version = "0.1.0"
+authors = ["liukz <liukz@moresec.cn>"]
+edition = "2018"
+
+[lib]
+name = "ast"
+path = "src/ast.rs"
+
+[dependencies]
+docopt = "1.1.0"
+serde = "1.0.99"

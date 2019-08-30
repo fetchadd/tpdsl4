@@ -28,19 +28,21 @@ public class Test {
         VecMathLexer lexer = new VecMathLexer(charStream);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         VecMathParser parser = new VecMathParser(tokens);
+        System.out.println(parser.prog().toStringTree(parser));
 
-        List<VecMathParser.StatContext> trees = parser.prog().stat();
-
-
-        ParseTreePattern pattern = parser.compileParseTreePattern("<ID> = <expr>", VecMathParser.RULE_stat);
-
-        for (VecMathParser.StatContext tree: trees) {
-            ParseTreeMatch match = pattern.match(tree);
-
-            if (match.succeeded()) {
-                System.out.println(match.get("ID").getText());
-                System.out.println(match.get("expr").getText());
-            }
-        }
+//
+//        List<VecMathParser.StatContext> trees = parser.prog().stat();
+//
+//
+//        ParseTreePattern pattern = parser.compileParseTreePattern("<ID> = <expr>", VecMathParser.RULE_stat);
+//
+//        for (VecMathParser.StatContext tree: trees) {
+//            ParseTreeMatch match = pattern.match(tree);
+//
+//            if (match.succeeded()) {
+//                System.out.println(match.get("ID").getText());
+//                System.out.println(match.get("expr").getText());
+//            }
+//        }
     }
 }
