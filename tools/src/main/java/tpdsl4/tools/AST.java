@@ -1,5 +1,9 @@
 package tpdsl4.tools;
 
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,6 +11,7 @@ import java.util.List;
 
 public class AST {
     public String name;
+    public ParseTree parseNode;
     public List<AST> children;
     String[] keywords = {
             ";", "=", "->", "+", ",", "[", "]", "*"
@@ -54,20 +59,25 @@ public class AST {
         return this.name;
     }
 
+    public String getId() {
+        int charPosition;
+
+        if (this.parseNode instanceof TerminalNode) {
+            charPosition = ((TerminalNode) this.parseNode).getSymbol().getCharPositionInLine();
+        } else {
+            charPosition = ((ParserRuleContext) this.parseNode).getStart().getCharPositionInLine();
+        }
+
+        return "\"" + this.name  + "@" + charPosition + "\"";
+    }
+
     private String _toDot(HashMap<String, Integer> nodeRecord) {
         StringBuilder buf = new StringBuilder();
 
         String label = this.safeName();
-        String name = label;
+        String id = this.getId();
 
-        if (nodeRecord.containsKey(label)) {
-            nodeRecord.put(label, nodeRecord.get(label) + 1);
-            name = name + nodeRecord.get(label).toString();
-        } else {
-            nodeRecord.put(label, 0);
-        }
-
-        buf.append(name);
+        buf.append(id);
         buf.append("[");
         buf.append("label=");
         buf.append(label);
@@ -78,9 +88,9 @@ public class AST {
         if (this.children != null) {
             for (AST child: this.children) {
                 buf.append(child._toDot(nodeRecord));
-                buf.append(name);
+                buf.append(id);
                 buf.append("->");
-                buf.append(child.safeName());
+                buf.append(child.getId());
                 buf.append(";");
                 buf.append("\n");
             }
@@ -93,9 +103,10 @@ public class AST {
         StringBuilder buf = new StringBuilder();
         buf.append("digraph G {\n");
         buf.append("  ranksep=.25;\n");
-        buf.append("  edge [arrowsize=.5]\n");
-        buf.append("  node [shape=plaintext, fontname=\"ArialNarrow\",\n");
-        buf.append("        fontsize=12, fixedsize=true, height=.45];\n");
+        buf.append("  nodesep=.25;\n");
+        buf.append("  edge [arrowsize=.25]\n");
+        buf.append("  node [shape=plaintext,\n");
+        buf.append("        fontsize=12, height=.45];\n");
         buf.append("  ");
 
         HashMap<String, Integer> nodeRecords = new HashMap<>();

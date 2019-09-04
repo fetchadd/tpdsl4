@@ -7,6 +7,7 @@
     <modules>
         <module>walking.tree-pattern</module>
         <module>tools</module>
+        <module>symtab</module>
     </modules>
 
     <groupId>tpdsl4</groupId>

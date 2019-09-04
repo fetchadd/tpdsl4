@@ -42,6 +42,7 @@ public class Main {
             AST astRoot = new AST();
 
             astRoot.name = root.getChild(1).getText();
+            astRoot.parseNode = root.getChild(1);
 
             for (int i = 2, count = root.getChildCount(); i < count - 1; i ++ ) {
                 AST astChild = adaptTree(root.getChild(i));
@@ -54,6 +55,7 @@ public class Main {
 
         AST astLeaf = new AST();
         astLeaf.name = root.getText();
+        astLeaf.parseNode = root;
 
         return astLeaf;
     }

@@ -206,6 +206,7 @@ public class VecMathParser extends Parser {
 	}
 
 	public static class ExprContext extends ParserRuleContext {
+		public Token op;
 		public List<MultExprContext> multExpr() {
 			return getRuleContexts(MultExprContext.class);
 		}
@@ -242,7 +243,7 @@ public class VecMathParser extends Parser {
 				{
 				{
 				setState(23);
-				match(T__2);
+				((ExprContext)_localctx).op = match(T__2);
 				setState(24);
 				multExpr();
 				}
@@ -265,6 +266,7 @@ public class VecMathParser extends Parser {
 	}
 
 	public static class MultExprContext extends ParserRuleContext {
+		public Token op;
 		public List<PrimaryContext> primary() {
 			return getRuleContexts(PrimaryContext.class);
 		}
@@ -301,9 +303,10 @@ public class VecMathParser extends Parser {
 				{
 				{
 				setState(31);
+				((MultExprContext)_localctx).op = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==T__3 || _la==T__4) ) {
-				_errHandler.recoverInline(this);
+					((MultExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 				}
 				else {
 					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
