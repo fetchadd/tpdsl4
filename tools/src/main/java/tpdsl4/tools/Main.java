@@ -31,9 +31,7 @@ public class Main {
         LispParser parser = new LispParser(tokens);
 
         ParseTree root = parser.list();
-        System.out.println(root.toStringTree(parser));
         AST astRoot = adaptTree(root);
-        System.out.println(astRoot);
         System.out.println(AST.toDot(astRoot));
     }
 

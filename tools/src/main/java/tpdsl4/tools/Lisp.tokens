@@ -1,7 +1,6 @@
 T__0=1
 T__1=2
-LITERAL=3
-ATOMIC=4
-WS=5
+ATOMIC=3
+WS=4
 '('=1
 ')'=2

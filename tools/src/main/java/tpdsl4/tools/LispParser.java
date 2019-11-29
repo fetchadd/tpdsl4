@@ -19,7 +19,7 @@ public class LispParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, LITERAL=3, ATOMIC=4, WS=5;
+		T__0=1, T__1=2, ATOMIC=3, WS=4;
 	public static final int
 		RULE_list = 0;
 	private static String[] makeRuleNames() {
@@ -37,7 +37,7 @@ public class LispParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, "LITERAL", "ATOMIC", "WS"
+			null, null, null, "ATOMIC", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -96,10 +96,6 @@ public class LispParser extends Parser {
 		public TerminalNode ATOMIC(int i) {
 			return getToken(LispParser.ATOMIC, i);
 		}
-		public List<TerminalNode> LITERAL() { return getTokens(LispParser.LITERAL); }
-		public TerminalNode LITERAL(int i) {
-			return getToken(LispParser.LITERAL, i);
-		}
 		public List<ListContext> list() {
 			return getRuleContexts(ListContext.class);
 		}
@@ -129,12 +125,12 @@ public class LispParser extends Parser {
 			{
 			setState(2);
 			match(T__0);
-			setState(6); 
+			setState(5); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
-				setState(6);
+				setState(5);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case ATOMIC:
@@ -143,15 +139,9 @@ public class LispParser extends Parser {
 					match(ATOMIC);
 					}
 					break;
-				case LITERAL:
-					{
-					setState(4);
-					match(LITERAL);
-					}
-					break;
 				case T__0:
 					{
-					setState(5);
+					setState(4);
 					list();
 					}
 					break;
@@ -159,11 +149,11 @@ public class LispParser extends Parser {
 					throw new NoViableAltException(this);
 				}
 				}
-				setState(8); 
+				setState(7); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << LITERAL) | (1L << ATOMIC))) != 0) );
-			setState(10);
+			} while ( _la==T__0 || _la==ATOMIC );
+			setState(9);
 			match(T__1);
 			}
 		}
@@ -179,11 +169,10 @@ public class LispParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7\17\4\2\t\2\3\2"+
-		"\3\2\3\2\3\2\6\2\t\n\2\r\2\16\2\n\3\2\3\2\3\2\2\2\3\2\2\2\2\20\2\4\3\2"+
-		"\2\2\4\b\7\3\2\2\5\t\7\6\2\2\6\t\7\5\2\2\7\t\5\2\2\2\b\5\3\2\2\2\b\6\3"+
-		"\2\2\2\b\7\3\2\2\2\t\n\3\2\2\2\n\b\3\2\2\2\n\13\3\2\2\2\13\f\3\2\2\2\f"+
-		"\r\7\4\2\2\r\3\3\2\2\2\4\b\n";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\6\16\4\2\t\2\3\2"+
+		"\3\2\3\2\6\2\b\n\2\r\2\16\2\t\3\2\3\2\3\2\2\2\3\2\2\2\2\16\2\4\3\2\2\2"+
+		"\4\7\7\3\2\2\5\b\7\5\2\2\6\b\5\2\2\2\7\5\3\2\2\2\7\6\3\2\2\2\b\t\3\2\2"+
+		"\2\t\7\3\2\2\2\t\n\3\2\2\2\n\13\3\2\2\2\13\f\7\4\2\2\f\3\3\2\2\2\4\7\t";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
